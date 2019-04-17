@@ -1,16 +1,32 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `JavaScript and Skydiving | Adam Tuttle`,
+    description: `A place to write about the stuff that interests me.`,
+    author: `@adamtuttle`,
   },
   plugins: [
+    {
+      resolve: `gatsby-mdx`,
+      options: {
+        extensions: [`.mdx`,`.md`],
+        defaultLayouts: {
+          default: require.resolve(`./src/components/blog-post-layout.js`)
+        }
+      }
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `blog`,
+        path: `${__dirname}/src/pages/blog`,
       },
     },
     `gatsby-transformer-sharp`,
@@ -26,7 +42,7 @@ module.exports = {
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
-    },
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

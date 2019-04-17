@@ -5,9 +5,13 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@mdx-js/mdx": "^1.0.10",
+    "@mdx-js/react": "^1.0.6",
+    "@mdx-js/tag": "^0.20.3",
     "gatsby": "^2.3.16",
     "gatsby-cli": "^2.5.8",
     "gatsby-image": "^2.0.37",
+    "gatsby-mdx": "^0.6.2",
     "gatsby-plugin-manifest": "^2.0.28",
     "gatsby-plugin-offline": "^2.0.25",
     "gatsby-plugin-react-helmet": "^3.0.12",
@@ -20,6 +24,7 @@
     "react-helmet": "^5.2.0"
   },
   "devDependencies": {
+    "moment": "^2.24.0",
     "prettier": "^1.17.0"
   },
   "keywords": [
