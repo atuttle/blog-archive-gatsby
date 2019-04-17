@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `JavaScript and Skydiving | Adam Tuttle`,
+    title: `JavaScript and Skydiving`,
     description: `A place to write about the stuff that interests me.`,
     author: `@adamtuttle`,
   },
@@ -10,7 +10,9 @@ module.exports = {
       options: {
         extensions: [`.mdx`,`.md`],
         defaultLayouts: {
-          default: require.resolve(`./src/components/blog-post-layout.js`)
+          blog: require.resolve(`./src/components/blog-post-layout.js`),
+          pages: require.resolve(`./src/components/layout.js`),
+          default: require.resolve(`./src/components/layout.js`)
         }
       }
     },
