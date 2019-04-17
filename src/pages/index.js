@@ -12,23 +12,25 @@ const FullSizeImage = ({ img }) => (
 		transform: `translateX(-50%)`,
 		position: `relative`,
 		display: `block`,
-		marginBottom: `25px`
+		marginBottom: `25px`,
+		clear: `both`
 	}}>
 		<Img fluid={img.childImageSharp.fluid} style={{ borderRadius: `8px` }} />
 	</div>
 );
 
+const FloatyImage = ({ img, float = `right`, width = `300px` }) => (
+	<div style={{ clear: float, float: float, width: width, marginLeft: `15px` }}>
+		<Img fixed={img.childImageSharp.fixed} style={{ borderRadius: `8px` }} />
+	</div>
+);
+
 const IndexPage = ({ data }) => {
-	console.log(data);
 	return (
 	<Layout>
 		<SEO title="JavaScript and Skydiving" keywords={[`javascript`, `react.js`, `skydiving`]} />
-		<div style={{width: `300px`, float: `right`, marginLeft: `15px` }}>
-			<Img fixed={data.adam.childImageSharp.fixed} style={{ borderRadius: `8px` }} />
-		</div>
-		<div style={{width: `300px`, float: `right`, clear: `right`, marginLeft: `15px` }}>
-			<Img fixed={data.skydiving.childImageSharp.fixed} style={{ borderRadius: `8px` }} />
-		</div>
+		<FloatyImage img={data.adam} />
+		<FloatyImage img={data.skydiving} />
 		<h1 style={{ margin: 0 }}>Adam Tuttle</h1>
 		<h2>Human Extraordinaire</h2>
 		<ul>
@@ -37,16 +39,21 @@ const IndexPage = ({ data }) => {
 		<p>
 			I'm a coder, systems thinker, speaker, human interface designer — and fortunately enough,
 			temporary collection of stardust in the approximate shape of a human being — living in the
-			suburbs of the suburbs (that's not a typo) of Philadelphia, PA.
+			suburbs of Philadelphia, PA.
 		</p>
 		<p>
-			You can connect with me on GitHub, on Twitter, on YouTube, and on GoodReads.
+			You can connect with me on <a href="https://github.com/atuttle">GitHub</a>,
+			on <a href="https://twitter.com/adamtuttle">Twitter</a>,
+			on Instagram (separate accounts for <a href="https://www.instagram.com/sawdustcoveredgeek/">woodworking</a>,
+			and <a href="https://www.instagram.com/adamtuttle/">Skydiving</a>),
+			on <a href="https://www.youtube.com/user/fusiongrokker">YouTube</a>,
+			and on <a href="https://www.goodreads.com/author/show/7514385.Adam_Tuttle">GoodReads</a>.
 		</p>
 		<p>
-			I joined AlumnIQ as employee #2 in 2012, where I have become the CTO and Lead developer,
-			shaping and building technology that aims to revolutionize Higher Education Advancement
-			and Alumni Relations. In my time here, I've helped grow the company from two people to
-			three. (I hope to be able to update that with a more impressive number as time goes on.)
+			I joined <a href="https://alumniq.com">AlumnIQ</a> as employee #2 in 2012, where I have
+			become the CTO and Lead developer, shaping and building technology that aims to
+			revolutionize Higher Education Advancement and Alumni Relations. In my time here, I've
+			helped grow the company from two people to four. (We're hiring!)
 		</p>
 		<p>
 			I work from home on a geographically distributed, 100% remote team, which means that on
@@ -60,26 +67,28 @@ const IndexPage = ({ data }) => {
 		</p>
 		<FullSizeImage img={data.balloon_jump} />
 		<p>
+			In more recent years I've found that I love woodworking, so when I'm not coding or falling
+			out of planes you'll most often find me in my basement turning wood into things.
+		</p>
+		<FloatyImage img={data.bender} />
+		<p>
 			I love traveling, whether it be for work, to attend or speak at an event, or vacationing.
-			I've lived on all three Continental American coasts, and [The Azores][azores]. My dog is
-			named after a character from Futurama. I've called 911 in emergency situations twice in
-			my life. One of them was for my brother. I swam a mile, camped in deep snow, hiked some
+			I've lived on all three Continental American coasts,
+			and <a href="https://www.google.com/maps/@38.6903073,-27.9664891,8.98z">The Azores</a>.
+			My dog is named after a character from Futurama. I've called 911 in two different emergency
+			situations. One of them was for my brother. I swam a mile, camped in deep snow, hiked some
 			parts of the Appalachain Trail and different parts of Redwood National and State Parks.
 			I've never been to the Grand Canyon. I remember attending 6 different schools up to and
 			including high school, but it might have been more. I can tie a bowline knot with one
-			hand. My favorite author is Bill Bryson, but paradoxically my favorite book genre is
-			science fiction.
+			hand. My favorite author is Bill Bryson, but my favorite book genre is science fiction.
 		</p>
 		<p>
-			Speaking of books, I wrote and self-published [a book about designing REST APIs][restassured]
+			Speaking of books, I wrote and self-published a book: <a href="https://restassuredbook.com/">REST Assured</a>
 			&mdash; and I did it over the course of two weeks, after work. If you use or build APIs,
-			it would probably interest you. You can read the first chapter for free, and if you decide
-			not to buy it we can still be friends.
+			it would probably interest you.
 		</p>
 		<p>
-			Want to chat? [Email me][email]. Or ask on my AMA ([Ask Me Anything][ama]), if it's something
-			others might be interested to read. I am also available to hire on an ad-hoc basis [for
-			mentoring on coding and other topics][mentor].
+			Want to chat? <a href="https://twitter.com/adamtuttle">Tweet at me</a>. 🐦
 		</p>
 		<FullSizeImage img={data.stone_beach} />
 	</Layout>
@@ -115,6 +124,13 @@ export const pageQuery = graphql`
 			childImageSharp {
 				fluid(maxWidth: 1000) {
 					...GatsbyImageSharpFluid
+				}
+			}
+		}
+		bender: file(relativePath: { eq: "about/bender.jpg" }) {
+			childImageSharp {
+				fixed(width: 300) {
+					...GatsbyImageSharpFixed
 				}
 			}
 		}
