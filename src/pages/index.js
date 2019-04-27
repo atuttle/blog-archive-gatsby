@@ -1,46 +1,31 @@
 import React from "react"
 import { graphql, Link } from 'gatsby';
-import Img from "gatsby-image"
 
+import { FullSizeImage, FloatyImage, Clearfix } from '../components/ImageStyles';
+import { ThemedButton } from '../components/ButtonStyles';
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
-const FullSizeImage = ({ img }) => (
-	<div style={{
-		width: `125%`,
-		left: `50%`,
-		transform: `translateX(-50%)`,
-		position: `relative`,
-		display: `block`,
-		marginBottom: `25px`,
-		clear: `both`
-	}}>
-		<Img fluid={img.childImageSharp.fluid} style={{ borderRadius: `8px` }} />
-	</div>
-);
-
-const FloatyImage = ({ img, float = `right`, width = `300px` }) => (
-	<div style={{ clear: float, float: float, width: width, marginLeft: `15px` }}>
-		<Img fixed={img.childImageSharp.fixed} style={{ borderRadius: `8px` }} />
-	</div>
-);
-
-const IndexPage = ({ data }) => {
-	return (
+const IndexPage = ({ data }) => (
 	<Layout>
 		<SEO title="JavaScript and Skydiving" keywords={[`javascript`, `react.js`, `skydiving`]} />
-		<FloatyImage img={data.adam} />
-		<FloatyImage img={data.skydiving} />
+		<FloatyImage img={data.adam} alt="Adam Tuttle" />
+		<FloatyImage img={data.skydiving} alt="A photo of Adam Tuttle somewhere between an airplane and the ground" />
+		<FloatyImage img={data.pizza} alt="Fig, prosciutto, & goat cheese pizza" />
+		<FloatyImage img={data.balloon_jump} alt="Me jumping out of a hot air balloon" />
+		<FloatyImage img={data.bender} alt="My Boston Terrier, Bender" />
 		<h1 style={{ margin: 0 }}>Adam Tuttle</h1>
-		<h2>Human Extraordinaire</h2>
-		<ul>
-			<li><Link to="/blog">Blog</Link></li>
-		</ul>
+		<h2>[object Object]</h2>
 		<p>
-			I'm a coder, systems thinker, speaker, human interface designer — and fortunately enough,
+			I'm a coder, systems thinker, speaker, humane interface designer — and fortunately enough,
 			temporary collection of stardust in the approximate shape of a human being — living in the
 			suburbs of Philadelphia, PA.
 		</p>
+		<ul style={{ listStyle: `none`, margin: 0, marginBottom: `1.45rem` }}>
+			<li>
+				<ThemedButton href="/blog">Read my blog</ThemedButton>
+			</li>
+		</ul>
 		<p>
 			You can connect with me on <a href="https://github.com/atuttle">GitHub</a>,
 			on <a href="https://twitter.com/adamtuttle">Twitter</a>,
@@ -53,7 +38,8 @@ const IndexPage = ({ data }) => {
 			I joined <a href="https://alumniq.com">AlumnIQ</a> as employee #2 in 2012, where I have
 			become the CTO and Lead developer, shaping and building technology that aims to
 			revolutionize Higher Education Advancement and Alumni Relations. In my time here, I've
-			helped grow the company from two people to four. (We're hiring!)
+			helped grow the company from two people to four.
+			(<a href="https://docs.google.com/document/d/10qX9nLQnvM97GJcJ7q5t3ofLIAoEgoaEHdE-nG8q-ME/edit?usp=sharing">We're hiring!</a>)
 		</p>
 		<p>
 			I work from home on a geographically distributed, 100% remote team, which means that on
@@ -61,16 +47,13 @@ const IndexPage = ({ data }) => {
 			a strange addiction to collecting board games even though we don't play them as much as
 			I'd like. I make some pretty killer pizza from scratch, if I do say so myself.
 		</p>
-		<FullSizeImage img={data.pizza} />
 		<p>
 			I'm also a skydiving bum trapped in a working man's body.
 		</p>
-		<FullSizeImage img={data.balloon_jump} />
 		<p>
 			In more recent years I've found that I love woodworking, so when I'm not coding or falling
-			out of planes you'll most often find me in my basement turning wood into things.
+			out of various aricraft you'll most often find me in my basement turning wood into things.
 		</p>
-		<FloatyImage img={data.bender} />
 		<p>
 			I love traveling, whether it be for work, to attend or speak at an event, or vacationing.
 			I've lived on all three Continental American coasts,
@@ -90,12 +73,11 @@ const IndexPage = ({ data }) => {
 		<p>
 			Want to chat? <a href="https://twitter.com/adamtuttle">Tweet at me</a>. 🐦
 		</p>
-		<FullSizeImage img={data.stone_beach} />
+		<FullSizeImage img={data.stone_beach} alt="A stone covered beach in Ireland" />
 	</Layout>
 );
-	}
 
-export default IndexPage
+export default IndexPage;
 
 export const pageQuery = graphql`
 	query {
@@ -115,15 +97,15 @@ export const pageQuery = graphql`
 		}
 		pizza: file(relativePath: { eq: "about/pizza.jpg" }) {
 			childImageSharp {
-				fluid(maxWidth: 1000) {
-					...GatsbyImageSharpFluid
+				fixed(width: 300) {
+					...GatsbyImageSharpFixed
 				}
 			}
 		}
 		balloon_jump: file(relativePath: { eq: "about/balloon_jump.jpg" }) {
 			childImageSharp {
-				fluid(maxWidth: 1000) {
-					...GatsbyImageSharpFluid
+				fixed(width: 300) {
+					...GatsbyImageSharpFixed
 				}
 			}
 		}

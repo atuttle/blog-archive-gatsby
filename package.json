@@ -8,6 +8,8 @@
     "@mdx-js/mdx": "^1.0.10",
     "@mdx-js/react": "^1.0.6",
     "@mdx-js/tag": "^0.20.3",
+    "babel-plugin-styled-components": "^1.10.0",
+    "date-fns": "^1.30.1",
     "gatsby": "^2.3.16",
     "gatsby-cli": "^2.5.8",
     "gatsby-image": "^2.0.37",
@@ -16,15 +18,17 @@
     "gatsby-plugin-offline": "^2.0.25",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sharp": "^2.0.32",
+    "gatsby-plugin-styled-components": "^3.0.7",
+    "gatsby-remark-images": "^3.0.11",
     "gatsby-source-filesystem": "^2.0.29",
     "gatsby-transformer-sharp": "^2.1.17",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "styled-components": "^4.2.0"
   },
   "devDependencies": {
-    "moment": "^2.24.0",
     "prettier": "^1.17.0"
   },
   "keywords": [

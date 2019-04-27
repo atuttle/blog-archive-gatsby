@@ -1,8 +1,22 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
+import { format } from 'date-fns';
+import styled from 'styled-components';
+
 import Layout from '../../components/layout';
 
-import moment from 'moment';
+const PostBlock = styled.div`
+	margin: 10px 0;
+`;
+
+const PostDate = styled.div`
+	font-weight: bold;
+	color: #a0a0a0;
+
+	@media(max-width: 768px) {
+		display: none;
+	}
+`;
 
 function BlogIndex({ data }) {
 	const { edges: posts } = data.allMdx
@@ -10,7 +24,7 @@ function BlogIndex({ data }) {
 	let postYears = [];
 	const organizedPosts = posts.reduce((org, post) => {
 		const { date, title } = post.node.frontmatter;
-		const postYear = parseInt( moment(date).format('YYYY'), 10);
+		const postYear = parseInt( format(date, 'YYYY'), 10);
 		if (!postYears.includes(postYear)){
 			postYears.push(postYear);
 		}
@@ -29,12 +43,12 @@ function BlogIndex({ data }) {
 		<Layout>
 			{postYears.map(year => (
 				<section key={`year-${year}`}>
-					<h1 style={{ marginTop: `20px` }}>{year}</h1>
+					<h2 style={{ marginTop: `20px` }}>{year}</h2>
 					{organizedPosts[year].map(post => {
-						return (<div key={post.id}>
-							<div className="postDate">{moment(post.date).format(`YYYY-MM-DD`)}</div>
+						return (<PostBlock key={post.id}>
+							<PostDate>{format(post.date, `MMMM D`)}</PostDate>
 							<Link to={post.slug}>{post.title}</Link>
-						</div>);
+						</PostBlock>);
 					})}
 				</section>
 			))}

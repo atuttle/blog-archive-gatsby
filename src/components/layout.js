@@ -39,10 +39,18 @@ const Layout = ({ children }) => (
 					}}
 				>
 					<main>{children}</main>
-					<footer>
-						&copy; {new Date().getFullYear()} Adam Tuttle
-					</footer>
 				</div>
+					<footer
+						style={{
+							padding: `50px 10px`,
+							textAlign: `center`,
+							backgroundColor: `#5d5d5d`,
+							color: `white`,
+							fontWeight: `bold`
+						}}
+					>
+					&copy; {new Date().getFullYear()} &nbsp;Adam Tuttle &nbsp;✨
+					</footer>
 			</>
 		)}
 	/>

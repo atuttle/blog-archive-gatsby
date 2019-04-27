@@ -13,10 +13,20 @@ module.exports = {
           blog: require.resolve(`./src/components/blog-post-layout.js`),
           pages: require.resolve(`./src/components/layout.js`),
           default: require.resolve(`./src/components/layout.js`)
-        }
+        },
+        gatsbyRemarkPlugins: [
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 1035,
+              sizeByPixelDensity: true
+            }
+          }
+          ]
       }
     },
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
