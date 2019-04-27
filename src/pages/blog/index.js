@@ -37,8 +37,6 @@ function BlogIndex({ data }) {
 
 	postYears.sort((L,R) => L < R ? -1 : 1).reverse();
 
-	console.log(organizedPosts);
-
 	return (
 		<Layout>
 			{postYears.map(year => (
