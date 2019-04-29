@@ -30,7 +30,7 @@ const IndexPage = ({ data }) => (
 			You can connect with me on <a href="https://github.com/atuttle">GitHub</a>,
 			on <a href="https://twitter.com/adamtuttle">Twitter</a>,
 			on Instagram (separate accounts for <a href="https://www.instagram.com/sawdustcoveredgeek/">woodworking</a>,
-			and <a href="https://www.instagram.com/adamtuttle/">Skydiving</a>),
+			and <a href="https://www.instagram.com/adamtuttle/">skydiving</a>),
 			on <a href="https://www.youtube.com/user/fusiongrokker">YouTube</a>,
 			and on <a href="https://www.goodreads.com/author/show/7514385.Adam_Tuttle">GoodReads</a>.
 		</p>
