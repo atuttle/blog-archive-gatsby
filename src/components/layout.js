@@ -39,18 +39,21 @@ const Layout = ({ children }) => (
 					}}
 				>
 					<main>{children}</main>
-				</div>
 					<footer
 						style={{
-							padding: `50px 10px`,
+							padding: `10px 10px 50px`,
 							textAlign: `center`,
-							backgroundColor: `#5d5d5d`,
-							color: `white`,
-							fontWeight: `bold`
+							color: `#333`,
+							borderTop: `1px solid #ccc`
 						}}
 					>
-					&copy; {new Date().getFullYear()} &nbsp;Adam Tuttle &nbsp;✨
+						Made with <a href="https://github.com">GitHub</a>,
+						{` `}<a href="https://netlify.com/">Netlify</a>,
+						{` `}<a href="https://gatsbyjs.org/">Gatsby</a>, and
+						{` `}<a href="https://gatsby-mdx.netlify.com/">MDX</a>,
+						by Adam Tuttle in Philadelphia 🏙️
 					</footer>
+				</div>
 			</>
 		)}
 	/>

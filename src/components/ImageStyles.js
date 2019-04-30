@@ -19,7 +19,7 @@ const FullSizeImage = ({ img, alt = `` }) => (
 
 const FloatyImage = ({ img, float = `right`, width = `300px`, alt = `` }) => (
 	<div style={{ clear: float, float: float, width: width, marginLeft: `15px` }}>
-		<Img fixed={img.childImageSharp.fixed} style={{ borderRadius: `8px` }} alt={alt} />
+		<Img fixed={img.childImageSharp.fixed} style={{ borderRadius: `8px`, width, height: width }} alt={alt} />
 	</div>
 );
 

@@ -15,17 +15,12 @@ const BlogPostLayout = ({ children, pageContext }) => {
 				<header style={{ marginBottom: `20px` }}>
 					<h1><Link to="/blog">Blog</Link> / {title}</h1>
 					<time style={{
-						backgroundColor: `#eee`,
 						display: `inline-block`,
 						padding: `6px 10px`,
-						transform: `skewX(15deg)`,
-						border: `1px solid #656565`,
 						fontSize: `0.8em`
 					}}>
-						<span style={{
-							transform: `skewX(-15deg)`,
-							display: `block`
-						}}><span style={{ fontSize: `2.3em`, display: `inline-block`, position: `relative`, top: `0.15em` }}>👨‍💻</span> By Adam Tuttle on {format(date, `MMM D, YYYY`)}</span>
+						<span style={{ fontSize: `2.3em`, display: `inline-block`, position: `relative`, top: `0.15em` }}>👨‍💻</span>
+						{` `}By Adam Tuttle on {format(date, `MMM D, YYYY`)}
 					</time>
 				</header>
 				{children}
