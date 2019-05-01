@@ -6,7 +6,6 @@ import Layout from './layout';
 
 const BlogPostLayout = ({ children, pageContext }) => {
 	const { title, date } = pageContext.frontmatter;
-	const dspDate = addHours(date, 24); //stamps are in UTC so push to the next day so that they display correctly
 	return (
 		<Layout>
 			<Helmet>
@@ -21,7 +20,7 @@ const BlogPostLayout = ({ children, pageContext }) => {
 						fontSize: `0.8em`
 					}}>
 						<span style={{ fontSize: `2.3em`, display: `inline-block`, position: `relative`, top: `0.15em` }}>👨‍💻</span>
-						{` `}By Adam Tuttle on {format(dspDate, `MMM DD, YYYY`)}
+						{` `}By Adam Tuttle on {format(date, `MMM DD, YYYY`)}
 					</time>
 				</header>
 				{children}
