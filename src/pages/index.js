@@ -9,8 +9,6 @@ import SEO from "../components/seo";
 
 const IndexPage = ({ data }) => {
 	const posts = data.allMdx.edges.map(e => e.node);
-
-	console.log(posts);
 	return (
 		<Layout>
 			<SEO title="JavaScript and Skydiving" keywords={[`javascript`, `react.js`, `skydiving`]} />
