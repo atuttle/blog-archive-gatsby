@@ -13,10 +13,10 @@ const IndexPage = ({ data }) => {
 		<Layout>
 			<SEO title="JavaScript and Skydiving" keywords={[`javascript`, `react.js`, `skydiving`]} />
 			<FloatyImage width={`250px`} img={data.adam} alt="Adam Tuttle" />
-			<FloatyImage width={`250px`} img={data.skydiving} alt="A photo of Adam Tuttle somewhere between an airplane and the ground" />
-			<FloatyImage width={`250px`} img={data.pizza} alt="Fig, prosciutto, & goat cheese pizza" />
-			<FloatyImage width={`250px`} img={data.balloon_jump} alt="Me jumping out of a hot air balloon" />
-			<FloatyImage width={`250px`} img={data.bender} alt="My Boston Terrier, Bender" />
+			<FloatyImage width={`250px`} collapse img={data.skydiving} alt="A photo of Adam Tuttle somewhere between an airplane and the ground" />
+			<FloatyImage width={`250px`} collapse img={data.pizza} alt="Fig, prosciutto, & goat cheese pizza" />
+			<FloatyImage width={`250px`} collapse img={data.balloon_jump} alt="Me jumping out of a hot air balloon" />
+			<FloatyImage width={`250px`} collapse img={data.bender} alt="My Boston Terrier, Bender" />
 			<h1 style={{ margin: 0 }}>Adam Tuttle</h1>
 			<h2>[object Object]</h2>
 			<p>
@@ -109,7 +109,7 @@ export const pageQuery = graphql`
 				}
 			}
 		}
-		adam: file(relativePath: { eq: "about/adam-tuttle.jpg" }) {
+		adam: file(relativePath: { eq: "about/adam-tuttle-removebg.png" }) {
 			childImageSharp {
 				fixed(width: 300) {
 					...GatsbyImageSharpFixed
