@@ -23,7 +23,7 @@ function BlogIndex({ data }) {
 
 	let postYears = [];
 	const organizedPosts = posts.reduce((org, post) => {
-		const { date, title } = post.node.frontmatter;
+		let { date, title } = post.node.frontmatter;
 		const postYear = parseInt( format(date, 'YYYY'), 10);
 		if (!postYears.includes(postYear)){
 			postYears.push(postYear);
@@ -34,8 +34,6 @@ function BlogIndex({ data }) {
 		org[postYear].push({ title, date, id: post.node.id, slug: post.node.fields.slug });
 		return org;
 	}, {});
-
-	postYears.sort((L,R) => L < R ? -1 : 1).reverse();
 
 	return (
 		<Layout>
@@ -58,7 +56,7 @@ export default BlogIndex
 
 export const pageQuery = graphql`
 	query blogIndex {
-		allMdx {
+		allMdx(sort: {fields: frontmatter___date, order: DESC}) {
 			edges {
 				node {
 					id
