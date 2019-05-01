@@ -4,10 +4,11 @@ date: 2019-04-16
 tags: inspiration writing
 ---
 
+import { TwitterTweetEmbed } from 'react-twitter-embed';
+
 Oh my. I haven't written a blog post since November 2017. I wonder why that is. 🤔
 
-<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr">If you&#39;re scared of pushing to production on Fridays, I recommend reassigning all your developer cycles off of feature development and onto your CI/CD process and observability tooling for as long as it takes to ✨fix that✨.</p>&mdash; Charity Majors (@mipsytipsy) <a href="https://twitter.com/mipsytipsy/status/1117858830136664067?ref_src=twsrc%5Etfw">April 15, 2019</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+<TwitterTweetEmbed tweetId={`1117858830136664067`} options={{hideThread: true, hieCard: true, cards: 'hidden'}} />
 
 I guess it's not a direct parallel, but this tweet<sup><a href="#footnotes">[1]</a></sup> really struck a chord with me, in more areas than just the Friday-deployments problem space mentioned. Friction stops things.
 
