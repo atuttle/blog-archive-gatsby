@@ -2,10 +2,21 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'gatsby';
 import { format, addHours } from 'date-fns';
+import { DiscussionEmbed } from 'disqus-react';
+import sha256 from 'sha-256-js';
 import Layout from './layout';
 
 const BlogPostLayout = ({ children, pageContext }) => {
 	const { title, date } = pageContext.frontmatter;
+	let { commentsPostId } = pageContext.frontmatter;
+	if (commentsPostId === undefined) {
+		commentsPostId = sha256(title);
+	}
+	const disqusShortname = 'adam-tuttle-codes';
+	const disqusConfig = {
+		identifier: commentsPostId,
+		title: title
+	};
 	return (
 		<Layout>
 			<Helmet>
@@ -38,6 +49,9 @@ const BlogPostLayout = ({ children, pageContext }) => {
 				</header>
 				{children}
 			</article>
+			<section id="comments">
+				<DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+			</section>
 		</Layout>
 	);
 };
