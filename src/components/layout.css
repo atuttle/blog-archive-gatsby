@@ -605,15 +605,12 @@ pre code {
 code:before,
 code:after,
 tt:before,
-tt:after {
-	letter-spacing: -0.2em;
-	content: ' ';
-}
+tt:after,
 pre code:before,
 pre code:after,
 pre tt:before,
 pre tt:after {
-	content: '';
+	display: none;
 }
 @media only screen and (max-width: 480px) {
 	html {
