@@ -5,6 +5,8 @@ tags: cfml coldfusion lucee retrospective
 commentsPostId: from-coldfusion-to-lucee
 ---
 
+import { TwitterTweetEmbed } from 'react-twitter-embed';
+
 My team has made the decision to migrate our application from Adobe ColdFusion 11 ("ACF") to Lucee 5, and the time has come to pull the trigger. I spent a couple of days this week trying to get the app on its feet running on Lucee, and now that I seem to have solved all of the initial challenges, I thought I'd write about what problems I had and how I resolved them while it's still mostly fresh in my mind.
 
 Plus I still have my git commits all neatly organized in a branch for easy reference.
@@ -118,9 +120,11 @@ tables.each(function(tbl){
 });
 ```
 
+**Update:** Lucee _does_ support for-in loops on arrays. I'm not sure why that particular loop I ran into seemed to be troublesome, but it certainly was at the time. Probably. I think.
+
 ### Canonicalize
 
-It's [reasonably well documented](https://cfdocs.org/canonicalize) that ACF's final argument to `canonicalize()`, `throwOnError` isn't supported by Lucee. It's still an open question for me to figure out how this affects our app (because we had it set to true), but for now I've simply deleted the argument.
+It's [reasonably well documented](https://cfdocs.org/canonicalize) that ACF's final argument to `canonicalize()`, `throwOnError` [isn't supported by Lucee](https://luceeserver.atlassian.net/browse/LDEV-2391). It's still an open question for me to figure out how this affects our app (because we had it set to true), but for now I've simply deleted the argument.
 
 ### Colons in function meta-attribute names
 
@@ -145,3 +149,10 @@ Eventually you should narrow it down to one line or a small chunk of lines. That
 Speaking of which, I need to thank (in the order that they first offered me advice on this journey) Brad Wood, Matthew Clemente, Pete Freitag, and Samuel Knowlton from the #Lucee chat for your help. Thanks, gents!
 
 I imagine I'm not done troubleshooting differences between ACF and Lucee yet, but my app is on its feet.
+
+
+## Update: They keep helping me
+
+I've now also been informed that Lucee supports defining caches in Application.cfc, as seen here:
+
+<TwitterTweetEmbed tweetId={`1171405720987811841`} options={{hideThread: true}} />
