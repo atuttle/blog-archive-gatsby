@@ -11,7 +11,7 @@ const IndexPage = ({ data }) => {
 	const posts = data.allMdx.edges.map(e => e.node);
 	return (
 		<Layout>
-			<SEO title="JavaScript and Skydiving" keywords={[`javascript`, `react.js`, `skydiving`]} />
+			<SEO title="On Becoming CTO - A Behind the Curtain Look at My Journey from Software Engineer to CTO" keywords={[`Engineering`,`Personal Growth`,`Management`]} />
 			<FloatyImage width={`250px`} img={data.adam} alt="Adam Tuttle" />
 			<FloatyImage width={`250px`} collapse img={data.skydiving} alt="A photo of Adam Tuttle somewhere between an airplane and the ground" />
 			<FloatyImage width={`250px`} collapse img={data.pizza} alt="Fig, prosciutto, & goat cheese pizza" />
@@ -20,10 +20,21 @@ const IndexPage = ({ data }) => {
 			<h1 style={{ margin: 0 }}>Adam Tuttle</h1>
 			<h2>[object Object]</h2>
 			<p>
-				I'm a coder, systems thinker, humane interface designer, occasional speaker, and fortunately enough,
+				I'm a coder, humane interface designer, and fortunately enough,
 				temporary collection of stardust in the approximate shape of a human being. I live in the suburbs
 				but I identify as a Philadelphian.
 			</p>
+			<p>I'm also the CTO for a small startup, and I'm working on figuring out what that means... one day at a time.</p>
+			<h3>Get my posts hand-delivered to your inbox... early!</h3>
+			<p>
+				I have a newsletter, where I share my blog posts two weeks before they show up here on my blog. If
+				having my thoughts appear in your inbox every Tuesday sounds appealing, you can sign up here.
+			</p>
+			<form action="https://gumroad.com/follow_from_embed_form" method="post">
+				<input name="seller_id" type="hidden" value="9681628305772" />
+				<input name="email" placeholder="Your email address" type="email" style={{ width: `45%`, height: `40px`, padding: `0 8px` }} />
+				<button style={{ border: `none`, backgroundColor: `#509e5a`, color: `white`, height: `40px`, padding: `0 20px`}} type="submit">Sign up</button>
+			</form>
 			<h3>Recent Blog Posts</h3>
 			<ul style={{ listStyle: `none`, margin: 0, marginBottom: `1.45rem` }}>
 				{posts.map(post => (<li key={post.id}>
