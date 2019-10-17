@@ -439,9 +439,10 @@ fieldset {
 	margin-bottom: 1.45rem;
 }
 blockquote {
-	background-color: #4f9e5a2b;
 	margin: 0 1.45rem 1.45rem 1.45rem;
 	padding: 15px 30px;
+	background-color: white;
+	border: 6px solid rgba(79, 158, 90, 0.16862745098039217);
 }
 form {
 	margin-left: 0;
