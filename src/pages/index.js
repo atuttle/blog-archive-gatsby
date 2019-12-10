@@ -1,102 +1,173 @@
-import React from "react"
+import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { format } from 'date-fns';
 
-import { FullSizeImage, FloatyImage, Clearfix } from '../components/ImageStyles';
+import {
+	FullSizeImage,
+	FloatyImage,
+	Clearfix
+} from '../components/ImageStyles';
 import { ThemedButton } from '../components/ButtonStyles';
-import Layout from "../components/layout";
-import SEO from "../components/seo";
+import Layout from '../components/layout';
+import SEO from '../components/seo';
 
 const IndexPage = ({ data }) => {
 	const posts = data.allMdx.edges.map(e => e.node);
 	return (
 		<Layout>
-			<SEO title="On Becoming CTO - A Behind the Curtain Look at My Journey from Software Engineer to CTO" keywords={[`Engineering`,`Personal Growth`,`Management`]} />
+			<SEO
+				title="On Becoming CTO - A Behind the Curtain Look at My Journey from Software Engineer to CTO"
+				keywords={[`Engineering`, `Personal Growth`, `Management`]}
+			/>
 			<FloatyImage width={`250px`} img={data.adam} alt="Adam Tuttle" />
-			<FloatyImage width={`250px`} collapse img={data.skydiving} alt="A photo of Adam Tuttle somewhere between an airplane and the ground" />
-			<FloatyImage width={`250px`} collapse img={data.pizza} alt="Fig, prosciutto, & goat cheese pizza" />
-			<FloatyImage width={`250px`} collapse img={data.balloon_jump} alt="Me jumping out of a hot air balloon" />
-			<FloatyImage width={`250px`} collapse img={data.bender} alt="My Boston Terrier, Bender" />
+			<FloatyImage
+				width={`250px`}
+				collapse
+				img={data.skydiving}
+				alt="A photo of Adam Tuttle somewhere between an airplane and the ground"
+			/>
+			<FloatyImage
+				width={`250px`}
+				collapse
+				img={data.pizza}
+				alt="Fig, prosciutto, & goat cheese pizza"
+			/>
+			<FloatyImage
+				width={`250px`}
+				collapse
+				img={data.balloon_jump}
+				alt="Me jumping out of a hot air balloon"
+			/>
+			<FloatyImage
+				width={`250px`}
+				collapse
+				img={data.bender}
+				alt="My Boston Terrier, Bender"
+			/>
 			<h1 style={{ margin: 0 }}>Adam Tuttle</h1>
 			<h2>[object Object]</h2>
 			<p>
 				I'm a coder, humane interface designer, and fortunately enough,
-				temporary collection of stardust in the approximate shape of a human being. I live in the suburbs
-				but I identify as a Philadelphian.
+				temporary collection of stardust in the approximate shape of a human
+				being. I live in the suburbs but I identify as a Philadelphian.
 			</p>
-			<p>I'm also the CTO for a small startup, and I'm working on figuring out what that means... one day at a time.</p>
-			<h3>Get my posts hand-delivered to your inbox... early!</h3>
 			<p>
-				I have a newsletter, where I share my blog posts two weeks before they show up here on my blog. If
-				having my thoughts appear in your inbox every Tuesday sounds appealing, you can sign up here.
+				I'm also the CTO for a small startup, and I'm working on figuring out
+				what that means... one day at a time.
+			</p>
+			<h3>RSS is dead(ish)! Long live email!</h3>
+			<p>
+				I do have <a href="http://adamtuttle.codes/rss.xml">an RSS feed</a> if
+				that's your thing, but email reminders seem to be all the rage these
+				days too. If you would rather be notified of my posts by email, you can
+				sign up here:
 			</p>
 			<form action="https://gumroad.com/follow_from_embed_form" method="post">
 				<input name="seller_id" type="hidden" value="9681628305772" />
-				<input name="email" placeholder="Your email address" type="email" style={{ width: `45%`, height: `40px`, padding: `0 8px` }} />
-				<button style={{ border: `none`, backgroundColor: `#509e5a`, color: `white`, height: `40px`, padding: `0 20px`}} type="submit">Sign up</button>
+				<input
+					name="email"
+					placeholder="Your email address"
+					type="email"
+					style={{ width: `45%`, height: `40px`, padding: `0 8px` }}
+				/>
+				<button
+					style={{
+						border: `none`,
+						backgroundColor: `#509e5a`,
+						color: `white`,
+						height: `40px`,
+						padding: `0 20px`
+					}}
+					type="submit"
+				>
+					Sign up
+				</button>
 			</form>
 			<h3>Recent Blog Posts</h3>
 			<ul style={{ listStyle: `none`, margin: 0, marginBottom: `1.45rem` }}>
-				{posts.map(post => (<li key={post.id}>
-					<Link to={post.fields.slug} style={{ fontWeight: `bold` }}>
-						{post.frontmatter.title}
-					</Link>
-					<div style={{ fontSize: `0.9em`, color: `#666`, marginTop: `-7px` }}>
-						{format(post.frontmatter.date, `MMM D, YYYY`)}
-					</div>
-				</li>))}
+				{posts.map(post => (
+					<li key={post.id}>
+						<Link to={post.fields.slug} style={{ fontWeight: `bold` }}>
+							{post.frontmatter.title}
+						</Link>
+						<div
+							style={{ fontSize: `0.9em`, color: `#666`, marginTop: `-7px` }}
+						>
+							{format(post.frontmatter.date, `MMM D, YYYY`)}
+						</div>
+					</li>
+				))}
 				<li>
 					<ThemedButton href="/blog">All blog posts</ThemedButton>
 				</li>
 			</ul>
 			<p>
-				You can connect with me on <a href="https://github.com/atuttle">GitHub</a>,
-				on <a href="https://twitter.com/adamtuttle">Twitter</a>,
-				on Instagram (separate accounts for <a href="https://www.instagram.com/sawdustcoveredgeek/">woodworking</a>,
-				and <a href="https://www.instagram.com/adamtuttle/">skydiving</a>),
-				on <a href="https://www.youtube.com/user/fusiongrokker">YouTube</a>,
-				and on <a href="https://www.goodreads.com/author/show/7514385.Adam_Tuttle">GoodReads</a>.
+				You can connect with me on{' '}
+				<a href="https://github.com/atuttle">GitHub</a>, on{' '}
+				<a href="https://twitter.com/adamtuttle">Twitter</a>, on Instagram
+				(separate accounts for{' '}
+				<a href="https://www.instagram.com/sawdustcoveredgeek/">woodworking</a>,
+				and <a href="https://www.instagram.com/adamtuttle/">skydiving</a>), on{' '}
+				<a href="https://www.youtube.com/user/fusiongrokker">YouTube</a>, and on{' '}
+				<a href="https://www.goodreads.com/author/show/7514385.Adam_Tuttle">
+					GoodReads
+				</a>
+				.
 			</p>
-				<p>
-					I joined <a href="https://alumniq.com">AlumnIQ</a> as employee #2 in 2012, where I have
-				become the CTO and Lead developer, shaping and building technology that aims to
-				revolutionize Higher Education Advancement and Alumni Relations. In my time here, I've
-				helped grow the company from two people to four.
-					{` `}<a href="https://docs.google.com/document/d/10qX9nLQnvM97GJcJ7q5t3ofLIAoEgoaEHdE-nG8q-ME/edit?usp=sharing">We're hiring!</a>
+			<p>
+				I joined <a href="https://alumniq.com">AlumnIQ</a> as employee #2 in
+				2012, where I have become the CTO and Lead developer, shaping and
+				building technology that aims to revolutionize Higher Education
+				Advancement and Alumni Relations. In my time here, I've helped grow the
+				company from two people to four.
+				{` `}
+				<a href="https://docs.google.com/document/d/10qX9nLQnvM97GJcJ7q5t3ofLIAoEgoaEHdE-nG8q-ME/edit?usp=sharing">
+					We're hiring!
+				</a>
 			</p>
-				<p>
-					I work from home on a geographically distributed, 100% remote team, which means that on
-					most days I get the privilege of making breakfast and lunch for my two children. I have
-					a strange addiction to collecting board games even though we don't play them as much as
-					I'd like. I make some pretty killer pizza from scratch, if I do say so myself.
+			<p>
+				I work from home on a geographically distributed, 100% remote team,
+				which means that on most days I get the privilege of making breakfast
+				and lunch for my two children. I have a strange addiction to collecting
+				board games even though we don't play them as much as I'd like. I make
+				some pretty killer pizza from scratch, if I do say so myself.
 			</p>
-				<p>
-					I'm also a skydiving bum trapped in a working man's body.
+			<p>I'm also a skydiving bum trapped in a working man's body.</p>
+			<p>
+				In more recent years I've found that I love woodworking, so when I'm not
+				coding or falling out of various aricraft you'll most often find me in
+				my basement turning wood into things.
 			</p>
-				<p>
-					In more recent years I've found that I love woodworking, so when I'm not coding or falling
-					out of various aricraft you'll most often find me in my basement turning wood into things.
+			<p>
+				I love traveling, whether it be for work, to attend or speak at an
+				event, or vacationing. I've lived on all three Continental American
+				coasts, and{' '}
+				<a href="https://www.google.com/maps/@38.6903073,-27.9664891,8.98z">
+					The Azores
+				</a>
+				. My dog is named after a character from Futurama. I've called 911 in
+				two different emergency situations. One of them was for my brother. I
+				swam a mile, camped in deep snow, hiked some parts of the Appalachain
+				Trail and different parts of Redwood National and State Parks. I've
+				never been to the Grand Canyon. I remember attending 6 different schools
+				up to and including high school, but it might have been more. I can tie
+				a bowline knot with one hand. My favorite author is Bill Bryson, but my
+				favorite book genre is science fiction.
 			</p>
-				<p>
-					I love traveling, whether it be for work, to attend or speak at an event, or vacationing.
-					I've lived on all three Continental American coasts,
-				and <a href="https://www.google.com/maps/@38.6903073,-27.9664891,8.98z">The Azores</a>.
-						My dog is named after a character from Futurama. I've called 911 in two different emergency
-						situations. One of them was for my brother. I swam a mile, camped in deep snow, hiked some
-						parts of the Appalachain Trail and different parts of Redwood National and State Parks.
-						I've never been to the Grand Canyon. I remember attending 6 different schools up to and
-						including high school, but it might have been more. I can tie a bowline knot with one
-						hand. My favorite author is Bill Bryson, but my favorite book genre is science fiction.
+			<p>
+				Speaking of books, I wrote and self-published a book:{' '}
+				<a href="https://restassuredbook.com/">REST Assured</a>
+				&mdash; and I did it over the course of two weeks, after work. If you
+				use or build APIs, it would probably interest you.
 			</p>
-				<p>
-					Speaking of books, I wrote and self-published a book: <a href="https://restassuredbook.com/">REST Assured</a>
-					&mdash; and I did it over the course of two weeks, after work. If you use or build APIs,
-					it would probably interest you.
+			<p>
+				Want to chat? <a href="https://twitter.com/adamtuttle">Tweet at me</a>.
+				🐦
 			</p>
-				<p>
-					Want to chat? <a href="https://twitter.com/adamtuttle">Tweet at me</a>. 🐦
-			</p>
-			<FullSizeImage img={data.stone_beach} alt="A stone covered beach in Ireland" />
+			<FullSizeImage
+				img={data.stone_beach}
+				alt="A stone covered beach in Ireland"
+			/>
 		</Layout>
 	);
 };
@@ -105,7 +176,7 @@ export default IndexPage;
 
 export const pageQuery = graphql`
 	query homepage {
-		allMdx(limit: 3, sort: {fields: frontmatter___date, order: DESC}) {
+		allMdx(limit: 3, sort: { fields: frontmatter___date, order: DESC }) {
 			edges {
 				node {
 					id
