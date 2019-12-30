@@ -14,7 +14,7 @@ Our primary product started its life as a monolith, and as features started to o
 
 In an attempt to be pragmatic, the original solution I came up with for managing configuration was to hard-code it all into a data structure in a class. (_"We can improve it later when it becomes a problem!" Sometimes I want to punch prior me in the mouth..._) Since we were writing CFML it became known as `config.cfc`. Using a framework with great support for Dependency Injection made it easy to pull that config class into any controller or service throughout the app.
 
-It's not important at this point but it provides context for what comes next: We host that monolithic app on an AWS EC2 instance, and since we're on AWS, the database is running on RDS.
+It's not super important to the story but it provides context for what comes next: We host that monolithic app on an AWS EC2 instance.
 
 When certain scheduled tasks started to bring the rest of the application to its knees, the first thing we did was to bring up a 2nd server to run background tasks. That way if a scheduled task brought everything grinding to a halt (again), users wouldn't be affected. No config problem here. There's two copies of `config.cfc`, but they're both checked out of the same repository and unchanged, so there's nothing to worry about.
 
