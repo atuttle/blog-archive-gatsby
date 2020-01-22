@@ -119,11 +119,7 @@ const IndexPage = ({ data }) => {
 				2012, where I have become the CTO and Lead developer, shaping and
 				building technology that aims to revolutionize Higher Education
 				Advancement and Alumni Relations. In my time here, I've helped grow the
-				company from two people to four.
-				{` `}
-				<a href="https://docs.google.com/document/d/10qX9nLQnvM97GJcJ7q5t3ofLIAoEgoaEHdE-nG8q-ME/edit?usp=sharing">
-					We're hiring!
-				</a>
+				company from two people to five.
 			</p>
 			<p>
 				I work from home on a geographically distributed, 100% remote team,
