@@ -24,7 +24,7 @@ const ResponsiveContainer = styled.div`
 	}
 `;
 
-const Layout = ({ children }) => (
+const Layout = ({ title = '', children }) => (
 	<StaticQuery
 		query={graphql`
 			query SiteTitleQuery {
@@ -37,7 +37,9 @@ const Layout = ({ children }) => (
 		`}
 		render={data => (
 			<>
-				<Header siteTitle={data.site.siteMetadata.title} />
+				<Header
+					siteTitle={title !== '' ? title : data.site.siteMetadata.title}
+				/>
 				<ResponsiveContainer>
 					<main>{children}</main>
 					<footer
