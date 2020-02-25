@@ -14,12 +14,12 @@ const IndexPage = ({ data }) => {
 				keywords={[`Engineering`, `Personal Growth`, `Management`]}
 			/>
 			<FloatyImage width={`250px`} img={data.adam} alt="Adam Tuttle" />
-			{/* <FloatyImage
+			<FloatyImage
 				width={`250px`}
 				collapse
 				img={data.skydiving}
 				alt="A photo of Adam Tuttle somewhere between an airplane and the ground"
-			/> */}
+			/>
 			<p>
 				Of all social media, I'm most active on Twitter,{' '}
 				<a href="https://twitter.com/adamtuttle" target="_blank">
@@ -60,6 +60,14 @@ const IndexPage = ({ data }) => {
 				I'm too young for Tumblr and too old for SnapChat or TikTok. It may not
 				be a popular approach, but I like to keep my Facebook account limited to
 				family, and friends that I've met in meatspace. Sorry!
+			</p>
+			<p>
+				Wow, if you've read this far then you must <em>really</em> not hate me!
+				In that case, it may also interest you to know that I've written and
+				self-published a book. It's called{' '}
+				<a href="https://restassuredbook.com/">REST Assured</a>, and it's all
+				about REST API's: From a no-nonsense practical approach to creating
+				them, to a clear but concise explanation of how it works under the hood.
 			</p>
 		</Layout>
 	);
