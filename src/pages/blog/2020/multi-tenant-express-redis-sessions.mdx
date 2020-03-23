@@ -63,7 +63,7 @@ app.use((req, res, next) => {
 });
 ```
 
-Step 2: A new custom middleware-generator that will create new **Express-Session** and associated **RedisStore** instances &mdash;one for each customer, created only once, at startup&mdash; and then return a middleware that will proxy the request to the appropriate session-middleware instance based on `req.CUSTOMER`. I know that sounds complicated and weird when written out, but hopefully it will make more sense written outt in code form.
+Step 2: A new custom middleware-generator that will create new **Express-Session** and associated **RedisStore** instances &mdash;one for each customer, created only once, at startup&mdash; and then return a middleware that will proxy the request to the appropriate session-middleware instance based on `req.CUSTOMER`. I know that sounds complicated and weird when written out, but hopefully it will make more sense written out in code form.
 
 So we start with our `app.use(session(...))` and replace that with a new middleware call:
 
