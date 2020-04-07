@@ -1,8 +1,7 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 
-import { FullSizeImage, FloatyImage } from '../components/ImageStyles';
-import { ThemedButton } from '../components/ButtonStyles';
+import { FloatyImage } from '../components/ImageStyles';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
@@ -22,21 +21,15 @@ const IndexPage = ({ data }) => {
 			/>
 			<p>
 				Of all social media, I'm most active on Twitter,{' '}
-				<a href="https://twitter.com/adamtuttle" target="_blank">
-					@AdamTuttle
-				</a>
-				. Follow me, and let's have a conversation.
+				<a href="https://twitter.com/adamtuttle">@AdamTuttle</a>. Follow me, and
+				let's have a conversation.
 			</p>
 			<p>
 				When it comes to Instagram, I have two accounts. One for random personal
 				stuff and skydiving photos{' '}
-				<a href="https://instagram.com/adamtuttle" target="_blank">
-					@AdamTuttle
-				</a>
-				, and one for woodworking stuff{' '}
-				<a href="https://instagram.com/alteregowoodworks" target="_blank">
-					@AlterEgoWoodworks
-				</a>
+				<a href="https://instagram.com/adamtuttle">@AdamTuttle</a>, and one for
+				woodworking stuff{' '}
+				<a href="https://instagram.com/alteregowoodworks">@AlterEgoWoodworks</a>
 				. I realize that may be a little weird, but if I do ever turn the
 				woodworking thing into a{' '}
 				<a href="/blog/2020/time-is-all-you-have/">side business</a>, I'm sure
@@ -51,10 +44,7 @@ const IndexPage = ({ data }) => {
 			</p>
 			<p>
 				I also blog about tech &amp; transitioning into management{' '}
-				<a href="https://adamtuttle.codes" target="_blank">
-					here on adamtuttle.codes
-				</a>
-				.
+				<a href="https://adamtuttle.codes">here on adamtuttle.codes</a>.
 			</p>
 			<p>
 				I'm too young for Tumblr and too old for SnapChat or TikTok. It may not

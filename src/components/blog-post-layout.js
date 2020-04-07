@@ -1,7 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'gatsby';
-import { format, addHours } from 'date-fns';
 import { DiscussionEmbed } from 'disqus-react';
 import sha256 from 'sha-256-js';
 import Layout from './layout';
@@ -41,10 +40,12 @@ const BlogPostLayout = ({ children, pageContext }) => {
 								position: `relative`,
 								top: `0.15em`
 							}}
+							role="img"
+							aria-label="Man working at a computer"
 						>
 							👨‍💻
 						</span>
-						{` `}By Adam Tuttle on {format(date, `MMM DD, YYYY`)}
+						{` `}By Adam Tuttle on {date.split('T')[0]}
 					</time>
 				</header>
 				{children}

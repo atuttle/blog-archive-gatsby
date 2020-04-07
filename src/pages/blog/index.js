@@ -1,6 +1,5 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import { format } from 'date-fns';
 import styled from 'styled-components';
 
 import Layout from '../../components/layout';
@@ -28,7 +27,7 @@ function BlogIndex({ data }) {
 	let postYears = [];
 	const organizedPosts = posts.reduce((org, post) => {
 		let { date, title } = post.node.frontmatter;
-		const postYear = parseInt(format(date, 'YYYY'), 10);
+		const postYear = parseInt(date.split(' ')[2], 10);
 		if (!postYears.includes(postYear)) {
 			postYears.push(postYear);
 		}
@@ -52,7 +51,7 @@ function BlogIndex({ data }) {
 					{organizedPosts[year].map(post => {
 						return (
 							<PostBlock key={post.id}>
-								<PostDate>{format(post.date, `MMMM D`)}</PostDate>
+								<PostDate>{post.date}</PostDate>
 								<Link to={post.slug}>
 									<strong>{post.title}</strong>
 								</Link>
@@ -79,7 +78,7 @@ export const pageQuery = graphql`
 					}
 					frontmatter {
 						title
-						date
+						date(formatString: "MMM D, YYYY")
 					}
 				}
 			}

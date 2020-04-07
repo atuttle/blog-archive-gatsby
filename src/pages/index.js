@@ -1,12 +1,7 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import { format } from 'date-fns';
 
-import {
-	FullSizeImage,
-	FloatyImage,
-	Clearfix
-} from '../components/ImageStyles';
+import { FullSizeImage, FloatyImage } from '../components/ImageStyles';
 import { ThemedButton } from '../components/ButtonStyles';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
@@ -55,11 +50,10 @@ const IndexPage = ({ data }) => {
 				I'm also the CTO for a small startup, and I'm working on figuring out
 				what that means... one day at a time.
 			</p>
-			<h3>RSS is dead(ish)! Long live email!</h3>
+			{/* <h3>RSS is dead(ish)! Long live email!</h3>
 			<p>
-				I do have <a href="http://adamtuttle.codes/rss.xml">an RSS feed</a> if
-				that's your thing, but email reminders seem to be all the rage these
-				days too. If you would rather be notified of my posts by email, you can
+				Email reminders seem to be all the rage these
+				days. If you would like to be notified of my posts by email, you can
 				sign up here:
 			</p>
 			<form action="https://gumroad.com/follow_from_embed_form" method="post">
@@ -82,21 +76,26 @@ const IndexPage = ({ data }) => {
 				>
 					Sign up
 				</button>
-			</form>
+			</form> */}
 			<h3>Recent Blog Posts</h3>
 			<ul style={{ listStyle: `none`, margin: 0, marginBottom: `1.45rem` }}>
-				{posts.map(post => (
-					<li key={post.id}>
-						<Link to={post.fields.slug} style={{ fontWeight: `bold` }}>
-							{post.frontmatter.title}
-						</Link>
-						<div
-							style={{ fontSize: `0.9em`, color: `#666`, marginTop: `-7px` }}
-						>
-							{format(post.frontmatter.date, `MMM D, YYYY`)}
-						</div>
-					</li>
-				))}
+				{posts.map(post => {
+					console.log('adam1', post);
+					return (
+						<li key={post.id}>
+							<Link to={post.fields.slug} style={{ fontWeight: `bold` }}>
+								{post.frontmatter.title}
+								{post.frontmatter.title.length === 0 && '(no title yet)'}
+							</Link>
+							<div
+								style={{ fontSize: `0.9em`, color: `#666`, marginTop: `-7px` }}
+							>
+								{post.frontmatter.date === null && '(no date yet)'}
+								{post.frontmatter.date}
+							</div>
+						</li>
+					);
+				})}
 				<li>
 					<ThemedButton href="/blog">All blog posts</ThemedButton>
 				</li>
@@ -182,7 +181,7 @@ export const pageQuery = graphql`
 					}
 					frontmatter {
 						title
-						date
+						date(formatString: "MMM D, YYYY")
 					}
 				}
 			}
