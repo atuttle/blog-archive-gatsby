@@ -80,7 +80,6 @@ const IndexPage = ({ data }) => {
 			<h3>Recent Blog Posts</h3>
 			<ul style={{ listStyle: `none`, margin: 0, marginBottom: `1.45rem` }}>
 				{posts.map(post => {
-					console.log('adam1', post);
 					return (
 						<li key={post.id}>
 							<Link to={post.fields.slug} style={{ fontWeight: `bold` }}>
