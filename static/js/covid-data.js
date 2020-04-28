@@ -1,5 +1,6 @@
 window.onload = function() {
-	var dataPoints = [];
+	var dataPointsRaw = [];
+	var dataPointsRollingAvg = [];
 
 	var chart = new CanvasJS.Chart('chartContainer', {
 		animationEnabled: true,
@@ -9,13 +10,20 @@ window.onload = function() {
 		},
 		axisY: {
 			title: 'New Confirmed Infections',
-			titleFontSize: 24
+			titleFontSize: 20
 		},
 		data: [
 			{
 				type: 'column',
+				name: 'Daily Delta',
 				yValueFormatString: '#,### new confirmed infections',
-				dataPoints: dataPoints
+				dataPoints: dataPointsRaw
+			},
+			{
+				type: 'spline',
+				name: '5 day rolling avg',
+				yValueFormatString: '#',
+				dataPoints: dataPointsRollingAvg
 			}
 		]
 	});
@@ -23,10 +31,22 @@ window.onload = function() {
 	function addData(data) {
 		console.log(data);
 		for (var i = 0; i < data.features.length; i++) {
-			dataPoints.push({
+			dataPointsRaw.push({
 				x: new Date(data.features[i].attributes.Date),
 				y: data.features[i].attributes.Positives_Daily
 			});
+			if (i >= 4) {
+				dataPointsRollingAvg.push({
+					x: new Date(data.features[i].attributes.Date),
+					y:
+						(data.features[i].attributes.Positives_Daily +
+							data.features[i - 1].attributes.Positives_Daily +
+							data.features[i - 2].attributes.Positives_Daily +
+							data.features[i - 3].attributes.Positives_Daily +
+							data.features[i - 4].attributes.Positives_Daily) /
+						5
+				});
+			}
 		}
 		chart.render();
 	}
