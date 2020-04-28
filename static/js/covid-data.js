@@ -5,7 +5,7 @@ window.onload = function() {
 		animationEnabled: true,
 		theme: 'dark2',
 		title: {
-			text: 'COVID19 Daily Infection Delta (Chester County, PA)'
+			text: 'Daily COVID19 Delta (ChesCo, PA)'
 		},
 		axisY: {
 			title: 'New Confirmed Infections',
