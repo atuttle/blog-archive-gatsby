@@ -3,54 +3,86 @@ import { Line } from 'react-chartjs-2';
 
 import Layout from '../components/layout';
 
-const rollingAvgLength = 10;
 const datasource =
 	'https://services.arcgis.com/G4S1dGvn7PIgYd6Y/arcgis/rest/services/COVID_19_Cases_Chester_County__PA/FeatureServer/2/query?f=json&where=1%3D1&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=Date%20asc&outSR=102100&resultOffset=0&resultRecordCount=32000&resultType=standard&cacheHint=true';
 
 const CovidPage = () => {
+	const [rawData, setRawData] = useState(null);
 	const [dates, setDates] = useState([]);
 	const [deltas, setDeltas] = useState([]);
 	const [avgs, setAvgs] = useState([]);
+	const [rollingAvgLength, setRollingAvgLength] = useState(20);
 
+	//load raw data once at page load, and not again until refresh
 	useEffect(() => {
 		(async () => {
 			const data = await fetch(datasource);
 			const dataJson = await data.json();
 			console.log(dataJson);
-
-			let dates = [];
-			let raw = [];
-			let avg = [];
-			for (let i = 0; i < dataJson.features.length; i++) {
-				dates.push(new Date(dataJson.features[i].attributes.Date));
-				raw.push(dataJson.features[i].attributes.Positives_Daily);
-				if (i < rollingAvgLength) {
-					avg.push(null);
-				} else {
-					let newAvg = 0;
-					for (let j = i; j >= i - rollingAvgLength; j--) {
-						newAvg += dataJson.features[j].attributes.Positives_Daily;
-					}
-					avg.push(newAvg / rollingAvgLength);
-				}
-			}
-
-			//add some padding to the right side of the chart so the last column doesn't get cropped
-			dates.push(null);
-			raw.push(null);
-			avg.push(null);
-
-			setDeltas(raw);
-			setAvgs(avg);
-			setDates(dates);
+			setRawData(dataJson);
 		})()
 			.then(() => {})
 			.catch(err => {
 				console.error(err);
 			});
 	}, []);
+
+	useEffect(() => {
+		if (rawData === null) {
+			return;
+		}
+
+		let dates = [];
+		let raw = [];
+		let avg = [];
+		for (let i = 0; i < rawData.features.length; i++) {
+			dates.push(new Date(rawData.features[i].attributes.Date));
+			raw.push(rawData.features[i].attributes.Positives_Daily);
+			if (i < rollingAvgLength) {
+				avg.push(null);
+			} else {
+				let newAvg = 0;
+				for (let j = i; j >= i - rollingAvgLength; j--) {
+					newAvg += rawData.features[j].attributes.Positives_Daily;
+				}
+				avg.push(newAvg / rollingAvgLength);
+			}
+		}
+
+		setDeltas(raw);
+		setAvgs(avg);
+		setDates(dates);
+	}, [rawData, rollingAvgLength]);
+
 	return (
 		<Layout title="Confirmed new COVID19 Infections in ChesCo, PA">
+			<p>
+				A{' '}
+				<a href="https://en.wikipedia.org/wiki/Moving_average">
+					moving average
+				</a>{' '}
+				smooths the spikes and shows a trend line. More days averaged = smoother
+				line.
+				<br />
+				Change the number here to adjust the graphed moving average length:
+				<input
+					type="text"
+					value={rollingAvgLength}
+					style={{
+						width: '48px',
+						padding: '0 6px',
+						marginLeft: '15px',
+						border: '2px solid #b80502',
+						backgroundColor: '#f5e0e0',
+						color: '#b80502',
+						fontWeight: 'bold'
+					}}
+					onChange={e => {
+						const newVal = parseInt(e.currentTarget.value, 10);
+						setRollingAvgLength(isNaN(newVal) ? 0 : newVal);
+					}}
+				/>
+			</p>
 			<Line
 				data={{
 					labels: dates,
@@ -74,7 +106,20 @@ const CovidPage = () => {
 				height={300}
 				options={{
 					legend: {
-						position: 'bottom'
+						position: 'top'
+					},
+					scales: {
+						xAxes: [
+							{
+								type: 'time',
+								time: {
+									unit: 'day',
+									displayFormats: {
+										day: 'ddd MMM DD'
+									}
+								}
+							}
+						]
 					}
 				}}
 			/>
