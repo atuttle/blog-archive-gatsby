@@ -11,7 +11,7 @@ const CovidPage = () => {
 	const [dates, setDates] = useState([]);
 	const [deltas, setDeltas] = useState([]);
 	const [avgs, setAvgs] = useState([]);
-	const [rollingAvgLength, setRollingAvgLength] = useState(20);
+	const [movingAvgLength, setMovingAvgLength] = useState(20);
 
 	//load raw data once at page load, and not again until refresh
 	useEffect(() => {
@@ -38,21 +38,21 @@ const CovidPage = () => {
 		for (let i = 0; i < rawData.features.length; i++) {
 			dates.push(new Date(rawData.features[i].attributes.Date));
 			raw.push(rawData.features[i].attributes.Positives_Daily);
-			if (i < rollingAvgLength) {
+			if (i < movingAvgLength) {
 				avg.push(null);
 			} else {
 				let newAvg = 0;
-				for (let j = i; j >= i - rollingAvgLength; j--) {
+				for (let j = i; j >= i - movingAvgLength; j--) {
 					newAvg += rawData.features[j].attributes.Positives_Daily;
 				}
-				avg.push(newAvg / rollingAvgLength);
+				avg.push(newAvg / movingAvgLength);
 			}
 		}
 
 		setDeltas(raw);
 		setAvgs(avg);
 		setDates(dates);
-	}, [rawData, rollingAvgLength]);
+	}, [rawData, movingAvgLength]);
 
 	return (
 		<Layout title="Confirmed new COVID19 Infections in ChesCo, PA">
@@ -67,7 +67,7 @@ const CovidPage = () => {
 				Change the number here to adjust the graphed moving average length:
 				<input
 					type="text"
-					value={rollingAvgLength}
+					value={movingAvgLength}
 					style={{
 						width: '48px',
 						padding: '0 6px',
@@ -79,7 +79,7 @@ const CovidPage = () => {
 					}}
 					onChange={e => {
 						const newVal = parseInt(e.currentTarget.value, 10);
-						setRollingAvgLength(isNaN(newVal) ? 0 : newVal);
+						setMovingAvgLength(isNaN(newVal) ? 0 : newVal);
 					}}
 				/>
 			</p>
@@ -88,7 +88,7 @@ const CovidPage = () => {
 					labels: dates,
 					datasets: [
 						{
-							label: `${rollingAvgLength} day rolling avg`,
+							label: `${movingAvgLength} day moving avg`,
 							type: 'line',
 							fill: false,
 							data: avgs,
