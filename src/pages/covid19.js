@@ -38,11 +38,11 @@ const CovidPage = () => {
 		for (let i = 0; i < rawData.features.length; i++) {
 			dates.push(new Date(rawData.features[i].attributes.Date));
 			raw.push(rawData.features[i].attributes.Positives_Daily);
-			if (i < movingAvgLength) {
+			if (i < movingAvgLength - 1) {
 				avg.push(null);
 			} else {
 				let newAvg = 0;
-				for (let j = i; j >= i - movingAvgLength; j--) {
+				for (let j = i; j >= i - (movingAvgLength - 1); j--) {
 					newAvg += rawData.features[j].attributes.Positives_Daily;
 				}
 				avg.push(newAvg / movingAvgLength);
@@ -79,7 +79,7 @@ const CovidPage = () => {
 					}}
 					onChange={e => {
 						const newVal = parseInt(e.currentTarget.value, 10);
-						setMovingAvgLength(isNaN(newVal) ? 0 : newVal);
+						setMovingAvgLength(isNaN(newVal) || newVal < 1 ? 1 : newVal);
 					}}
 				/>
 			</p>
