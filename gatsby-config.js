@@ -1,7 +1,7 @@
 module.exports = {
 	siteMetadata: {
-		title: `On Becoming CTO`,
-		description: `A Behind the Curtain Look at My Journey from Software Engineer to CTO`,
+		title: `JavaScript and Plane Fumes`,
+		description: `I write code, jump out of airplanes, make stuff from wood, and write about all of that stuff here.`,
 		author: `@adamtuttle`,
 		siteUrl: `http://adamtuttle.codes`
 	},
