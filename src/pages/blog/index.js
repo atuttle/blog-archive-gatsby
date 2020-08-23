@@ -27,7 +27,7 @@ function BlogIndex({ data }) {
 	let postYears = [];
 	const organizedPosts = posts.reduce((org, post) => {
 		let { date, title } = post.node.frontmatter;
-		const postYear = parseInt(date.split(' ')[2], 10);
+		const postYear = date === null ? '🤷‍♂️' : parseInt(date.split(' ')[2], 10);
 		if (!postYears.includes(postYear)) {
 			postYears.push(postYear);
 		}
