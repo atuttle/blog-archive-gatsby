@@ -12,7 +12,9 @@ The biggest news this time around is that we now have a shiny new logo!\*
 
 As ever, the [full release notes for Taffy 2.2.0](https://github.com/atuttle/Taffy/releases/tag/v2.2.0) are available on GitHub.
 
-<img alt="Taffy Metrics" src="http://fusiongrokker.com/assets/content/2014/01/taffy_metrics.png" align="right" hspace="8" />In addition to the new logo, my second favorite addition is that Taffy now returns additional headers that show you where time was spent on the server, to help find any performance bottlenecks that may pop up. These values are listed in milliseconds and are not perfect because there is some rounding involved.
+![Taffy Metrics](images/taffy_metrics.png)
+
+In addition to the new logo, my second favorite addition is that Taffy now returns additional headers that show you where time was spent on the server, to help find any performance bottlenecks that may pop up. These values are listed in milliseconds and are not perfect because there is some rounding involved.
 
 - **TIME-IN-ONTAFFYREQUEST** should be obvious, this is the time it takes for your OTR function to run.
 - **TIME-IN-PARSE** is the time needed to figure out what's being requested. This can get somewhat complex at times. I would expect the value to go up if you're using a bunch of tokens, for example.

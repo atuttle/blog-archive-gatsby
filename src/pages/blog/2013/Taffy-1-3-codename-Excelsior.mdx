@@ -8,7 +8,7 @@ commentsPostId: Taffy-1-3-codename-Excelsior
 
 Today I'm happy to officially release version 1.3 of Taffy, continuing my quest to keep to a greatly-reduced release cycle:
 
-<center><a href="http://fusiongrokker.com/assets/content/taffy_releases.png"><img src="http://fusiongrokker.com/assets/content/taffy_releases_tn.png" alt="Taffy release history" /></a></center>
+![Taffy release history](images/taffy_releases.png)
 
 I don't want to release so often it's annoying to have to upgrade, but still often enough to get bug fixes and new features out. How does 2 releases a year sound?
 
@@ -18,7 +18,7 @@ Here are the release notes for **Taffy 1.3.0**:
 
 * Meta / Project Management Changes
   * From this point forward, the `master` branch will be used for day-to-day development, not just merging in stable releases. Stable releases will still be available for download via [the tags page](https://github.com/atuttle/Taffy/tags). Should any maintenance releases be necessary, they'll be done in branches created from the applicable release tag.
-  * We've had an extensive test suite for a while now, but I've finally setup a Jenkins instance and am doing a bit of continuous integration. You can see the build stats here: <a href="http://fusiongrokker.com:8080/job/Taffy/"><img src="http://fusiongrokker.com:8080/job/Taffy/badge/icon" /></a> and this badge has been added to the [ReadMe](https://github.com/atuttle/Taffy#readme).
+  * We've had an extensive test suite for a while now, but I've finally setup a Jenkins instance and am doing a bit of continuous integration. You can see the build stats here: <a href="https://travis-ci.org/github/atuttle/Taffy"><img src="https://travis-ci.org/atuttle/Taffy.svg?branch=master" /></a> and this badge has been added to the [ReadMe](https://github.com/atuttle/Taffy#readme).
 * Bugs Fixed:
   * [#105](https://github.com/atuttle/Taffy/issues/105) - Static URIs that would match dynamic URIs are now allowed (`/user/logout` would previously conflict with `/user/{userId}`). Pay special attention to [URI Matching Order](https://github.com/atuttle/Taffy/wiki/Configuration-via-Metadata#uri-matching-order).
   * [#120](https://github.com/atuttle/Taffy/issues/120) - Added support for `*/*` Accept header value. _Thanks to Brian Quackenbush_ for the patch!
