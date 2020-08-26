@@ -21,14 +21,14 @@ Sadly, it did not work perfectly out of the box, so here's how we were able to g
 
 First, you're going to need pm2, pm2-windows-service, and npm-check-updates (more on that last one in a moment).
 
-```
-npm i -g pm2 pm2-windows-service npm-check-updates
+```bash
+$ npm i -g pm2 pm2-windows-service npm-check-updates
 ```
 
 In theory, your next step would be to run the following:
 
-```
-pm2-service-install
+```bash
+$ pm2-service-install
 ```
 
 ...and answer the questions that it asks. Here's what we did:
@@ -60,10 +60,10 @@ If that works for you, congratulations, you're basically done! However, it seems
 
 Fortunately, [other people had already run into this problem and found a solution](https://github.com/jon-hall/pm2-windows-service/issues/51#issuecomment-444160883)... Run these steps:
 
-```
-cd %AppData%\npm\node_modules\pm2-windows-service
-ncu inquirer -u
-npm i
+```bash
+$ cd %AppData%\npm\node_modules\pm2-windows-service
+$ ncu inquirer -u
+$ npm i
 ```
 
 Here, we're changing into the installation folder for `pm2-windows-service` and using `npm-check-updates` (the command for which is `ncu`) to update package.json with a newer version of the `inquirer` module. Ours updated from **1.1.2** to **6.3.1**. Then we run npm install to install the updated dependencies. After that, `pm2-service-install` can run successfully.

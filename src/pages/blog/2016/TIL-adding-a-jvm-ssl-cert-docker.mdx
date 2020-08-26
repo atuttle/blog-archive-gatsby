@@ -21,8 +21,8 @@ After copying my downloaded mailgun certificate file into the Docker image, I us
 
 As a refresher, to find all `cacerts` files on your (linux) machine, try this:
 
-```
-find / -iname 'cacerts'
+```bash
+$ find / -iname 'cacerts'
 ```
 
 This will list all files named cacerts on the system. In my Docker image, there were 4. I picked the one associated with [Lucee][lucee] because that's the app server I'm working with in this case, but it's possible that importing to the JVM's store could have worked too. I just got lucky on my first guess, so I stopped there.

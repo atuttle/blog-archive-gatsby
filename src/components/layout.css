@@ -608,6 +608,11 @@ pre tt:before,
 pre tt:after {
 	display: none;
 }
+p code {
+	background-color: #d3d3d3 !important;
+	color: black !important;
+	text-shadow: none !important;
+}
 .gatsby-highlight {
 	margin-bottom: 1.45rem;
 }

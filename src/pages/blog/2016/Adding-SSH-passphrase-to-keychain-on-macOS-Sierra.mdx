@@ -26,15 +26,15 @@ While conceding that it is _slightly less secure_ now, I also feel that requirin
 
 First, [add the key to the keychain][keychain]:
 
-```
-ssh-add -K /Users/atcodes/.ssh/id_rsa
+```bash
+$ ssh-add -K /Users/atcodes/.ssh/id_rsa
 ```
 
 Note that the absolute path to the key file is used, not `~/.ssh/id_rsa`.
 
 Then, [add this file][boot] as `~/Library/LaunchAgents/ssh.add.a.plist`:
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">

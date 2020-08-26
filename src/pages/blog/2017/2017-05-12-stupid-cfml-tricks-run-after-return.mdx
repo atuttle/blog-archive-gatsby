@@ -7,7 +7,7 @@ tags: CFML
 
 A few months back I ran into an interesting situation where I needed to use try/finally, but this was inside a method and I wanted to return a value from within the try. So I tried it, and to my surprise it worked!
 
-```
+```js
 try {
 	return 1;
 } finally {
@@ -17,7 +17,7 @@ try {
 
 It occurred to me that you could use this to your advantage to provide an early-returning method once all remaining work can be done in the background and won't affect the response. For example, audit logging.
 
-```
+```js
 component displayName="fooController" {
 
 	property auditService;

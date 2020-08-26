@@ -76,7 +76,7 @@ Fortunately we use the AWS CLI to deploy Lambda updates, so those get done quick
 
 We're not using private npm modules. Instead we're using private git repos and npm's ability to load a git repo as a dependency using a git url. There's even [semver](https://semver.org/) support:
 
-```
+```json
 {
 	"dependencies": {
 		"config": "git+https://<secret-key>:x-oauth-basic@github.com/alumniq/config.git#semver:^3.0.0"

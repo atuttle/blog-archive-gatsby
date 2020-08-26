@@ -7,7 +7,7 @@ commentsPostId: some-unique-string
 
 Today's adventure in the ways in which ORM in Lucee is _a little off_ got started when I tried to use ORM to create a new record. That entity uses an identity column as its primary key.
 
-```
+```js
 property
 	name="accountId"
 	type="numeric"
@@ -25,7 +25,7 @@ import ErrScreenShot from './images/lucee-identity-col-error.png';
 
 Fortunately, when I mentioned this at our daily standup meeting, a coworker remembered that he had run into this in the past. I imagine that he found a fix at the time by googling and finding an answer in a discussion group or something, so I'm glad to have had him to help me! The fix isn't obvious! See if you can spot it:
 
-```
+```js
 property
 	name="accountId"
 	type="numeric"
