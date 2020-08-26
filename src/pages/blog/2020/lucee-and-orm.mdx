@@ -11,7 +11,7 @@ Not unlike that first post, our biggest problem area in the migration since then
 
 The most recent problem we've been running into is that Lucee completely chokes if you've got a transaction that contains both an ORM read/write and a simple SQL query. There are different failure modes, but the worst is when the ORM usage comes first:
 
-```
+```js
 transaction {
 	var x = entityLoadByPk("Foo", 1);
 	x.setBar("foo bar");
@@ -31,7 +31,7 @@ We are, of course, [not the first team to run into this issue](https://luceeserv
 
 However, this alone doesn't make everything work. With the above code block updated like the following, Lucee no longer throws an exception, yay!
 
-```
+```js
 transaction {
 	queryExecute("select 1");
 
@@ -47,7 +47,7 @@ It's great that no exception is thrown, but sadly it has stopped persisting the 
 
 Even though Lucee have been silent on the bug report since May of 2018, others in the community have been helping each other out in the comments. One suggestion was that you could add a manual `ORMFlush()` after your transaction to get Lucee to do what it should have already done, and commit your ORM mutations. That did seem to work, but it made me curious about other potential problems; so I threw together a quick repro case to isolate the issue and allow me to test different theories.
 
-```
+```js
 component {
 
 	function afterQuery(rc){
@@ -93,7 +93,7 @@ An alternative work-around worth mentioning is to split ORM actions and SQL acti
 
 But this made me ask myself: If the ORM Session is getting flushed, does Lucee open a new session for the rest of the request to use? So I added another test:
 
-```
+```js
 function doubleWithFlush(rc){
 	transaction {
 		queryExecute("select 1");
