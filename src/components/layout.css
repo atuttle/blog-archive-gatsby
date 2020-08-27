@@ -207,7 +207,7 @@ body {
 	font-family: 'Fira Sans', sans-serif;
 	font-weight: normal;
 	letter-spacing: 0.01rem;
-	line-height: 1.75em;
+	line-height: 1.6em;
 	color: #3a4145;
 	word-wrap: break-word;
 	font-kerning: normal;
@@ -403,7 +403,7 @@ pre {
 	margin-top: 0;
 	margin-bottom: 1.45rem;
 	font-size: 0.85rem;
-	line-height: 1.42;
+	line-height: 1.3;
 	background: hsla(0, 0%, 0%, 0.04);
 	border-radius: 3px;
 	overflow: auto;
@@ -596,7 +596,7 @@ code {
 }
 pre code {
 	background: none;
-	line-height: 1.42;
+	line-height: 1.3;
 }
 code:before,
 code:after,
@@ -616,6 +616,12 @@ p code {
 .gatsby-highlight {
 	margin-bottom: 1.45rem;
 }
+
+code[class*='language-'],
+pre[class*='language-'] {
+	line-height: 1.3 !important;
+}
+
 @media only screen and (max-width: 480px) {
 	html {
 		font-size: 100%;
