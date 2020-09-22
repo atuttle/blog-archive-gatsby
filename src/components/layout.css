@@ -608,7 +608,8 @@ pre tt:before,
 pre tt:after {
 	display: none;
 }
-p code {
+p code,
+li code {
 	background-color: #d3d3d3 !important;
 	color: black !important;
 	text-shadow: none !important;
