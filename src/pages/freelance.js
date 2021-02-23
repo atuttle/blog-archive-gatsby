@@ -6,7 +6,7 @@ import FluidYouTube from '../components/FluidYouTube';
 const FreelancePage = () => (
 	<Layout>
 		<SEO title="Freelance Web Development by Adam Tuttle" />
-		<h1>I am available for freelance web development gigs</h1>
+		<h1>I am available for freelance web development</h1>
 		<p>
 			Here because of <a href="https://taffy.io">Taffy</a>? If you're not aware,
 			Taffy is an open source framework I created and maintain for authoring
@@ -28,7 +28,7 @@ const FreelancePage = () => (
 			interest me. If you've got a project you think will interest me, read on.
 		</p>
 		<p>
-			I am happy employed at <a href="https://www.alumniq.com/">AlumnIQ</a>{' '}
+			I am happily employed at <a href="https://www.alumniq.com/">AlumnIQ</a>{' '}
 			which both means that I am not seeking a new employer, and that I am not
 			available at all during normal business hours (at least not in American
 			time zones). All of my freelance work is done on a strictly nights &amp;
