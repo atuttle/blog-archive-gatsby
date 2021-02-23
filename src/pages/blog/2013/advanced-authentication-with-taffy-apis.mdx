@@ -1,12 +1,14 @@
 ---
-title: Advanced Authentication with Taffy APIs
-date: 2013-07-10
-tags: taffy security
+title: "Advanced Authentication with Taffy APIs"
+summary: "Advanced Authentication with Taffy APIs..."
+date: 2013-07-10 09:04:57
+tags: Taffy
+commentsPostId: Advanced-Authentication-with-Taffy-APIs
 ---
 
 I get a lot of advice requests for Taffy implementations, but the one I get most commonly has to be non-trivial authentication.
 
-What separates trivial from non-trivial? What I'd consider "trivial" authentication would be using SSL and requiring HTTP Basic Auth with every request. It's simple and it doesn't reinvent the wheel. In version 1.3, Taffy also added [a helper method for getting the Basic Auth credentials](http://docs.taffy.io/3.1.0#getbasicauthcredentials) so that you can easily validate them and respond as appropriate.
+What separates trivial from non-trivial? What I'd consider "trivial" authentication would be using SSL and requiring HTTP Basic Auth with every request. It's simple and it doesn't reinvent the wheel. In version 1.3, Taffy also added [a helper method for getting the Basic Auth credentials](https://github.com/atuttle/Taffy/wiki/Authentication-and-Security) so that you can easily validate them and respond as appropriate.
 
 Non-trivial would be anything more complicated than that. Anything up to and including OAuth. I've never had the pleasure of implementing OAuth, but I regularly do a slightly simplified version, which I'll explain for you in this post.
 
@@ -28,31 +30,33 @@ Sound Good? Let's Implement It.
 
 The first thing you need is an API endpoint that accepts authentication requests and will return the device its own token on a successful authentication.
 
-```
-component extends="taffy.core.resource" taffy_uri="/authenticate" {
+```js
+component
+extends="taffy.core.resource"
+taffy_uri="/authenticate" {
 
-    public function post(username, password, deviceId) {
+	public function post(username, password, deviceId) {
 
-        //implementation of verifying the username/password are up to you...
-        var authSuccess = authenticate(username, password);
+		//implementation of verifying the username/password are up to you...
+		var authSuccess = authenticate(username, password);
 
-        if (!authSuccess){
-            return noData().withStatus(401, "Not Authorized");
-        }
+		if (!authSuccess){
+			return noData().withStatus(401, "Not Authorized");
+		}
 
-        //create a new device token:
-        var deviceToken = createUUID();
+		//create a new device token:
+		var deviceToken = createUUID();
 
-        //saving the device token to the database is up to you...
-        saveDeviceToken(username, deviceId, deviceToken);
+		//saving the device token to the database is up to you...
+		saveDeviceToken(username, deviceId, deviceToken);
 
-        //tell the device auth was successful and give it the device token
-        return representationOf({ token: deviceToken }).withStatus(200, "OK");
+		//tell the device auth was successful and give it the device token
+		return representationOf({ token: deviceToken }).withStatus(200, "OK");
 
-    }
+	}
 
-    private function authenticate(username, password){}
-    private function saveDeviceToken(username, deviceId, deviceToken){}
+	private function authenticate(username, password){}
+	private function saveDeviceToken(username, deviceId, deviceToken){}
 
 }
 ```
@@ -65,33 +69,33 @@ If you wanted to, you could add an additional check for an existing device token
 
 This is done via the Taffy lifecycle event method `onTaffyRequest`, in `Application.cfc`:
 
-```
+```js
 component extends="taffy.core.api" {
 
-    function onTaffyRequest(verb, cfc, requestArguments, mimeExt, headers){
+	function onTaffyRequest(verb, cfc, requestArguments, mimeExt, headers){
 
-        //allow white-listed requests through
-        if (cfc == "authenticate"){
-            return true;
-        }
+		//allow white-listed requests through
+		if (cfc == "authenticate"){
+			return true;
+		}
 
-        //otherwise require a device token
-        if (!structKeyExists(requestArguments, "deviceToken")){
+		//otherwise require a device token
+		if (!structKeyExists(requestArguments, "deviceToken")){
 
-            return newRepresentation().noData().withStatus(401, "Not Authenticated");
+			return newRepresentation().noData().withStatus(401, "Not Authenticated");
 
-        //and make sure it's valid
-        }else if (!validateToken(requestArguments.deviceToken)){
+		//and make sure it's valid
+		}else if (!validateToken(requestArguments.deviceToken)){
 
-            return newRepresentation().noData().withStatus(403, "Not Authorized");
+			return newRepresentation().noData().withStatus(403, "Not Authorized");
 
-        }
+		}
 
-        //if a token is included, and valid, allow the request to continue
-        return true;
-    }
+		//if a token is included, and valid, allow the request to continue
+		return true;
+	}
 
-    private function validateToken(token){}
+	private function validateToken(token){}
 
 }
 ```
@@ -102,37 +106,38 @@ We verify that the `cfc` argument is `authenticate`, because the authentication 
 
 We've now setup a situation in which all requests require a device token (a.k.a. API Key), unless currently authenticating. This device token implies a few things, and it's possible to inject them into the request context so that they're made available in every resource automatically. For example, what if most of your resources wanted to know the username of the account making the request? Instead of having the device include it in the request details, you can look it up during request startup and add it to the request arguments.
 
-Here we'll be building onto `onTaffyRequest`. For the sake of brevity I'm going to omit the parts I wrote above for authentication. Just know that you can (and should) include the code for both. I would do what follows after everything from the previous example, before the final `return true;`.
+Here we'll be building onto `onTaffyRequest`. For the sake of brevity I'm going to _omit_ the parts I wrote above for authentication. Just know that you can (and should) include the code for both. I would do what follows after everything from the previous example, before the final `return true;`.
 
-```
+```js
 function onTaffyRequest(verb, cfc, requestArguments, mimeExt, headers){
 
-    var userMetadata = getUserMetadata(requestArguments.deviceToken);
-    structAppend(requestArguments, userMetadata);
+	var userMetadata = getUserMetadata(requestArguments.deviceToken);
+	structAppend(requestArguments, userMetadata);
 
-    return true;
+	return true;
 
 }
 
 private function getUserMetadata(deviceToken){}
 ```
 
-If `getUserMetadata` returns a structure, all of the data from the structure will be passed to the requested resource as if it were part of the request. You can use the device token to lookup the username, or userId, or device type, or myriad other things available in your data through that user-association. Be careful, however: This happens for every request. Don't use it lightly. (e.g. Don't run two database queries when one will do.)
+If `getUserMetadata` returns a structure, all of the data from the structure will be passed to the requested resource as if it were part of the request. You can use the device token to lookup the username, or userId, or device type, or myriad other things available in your data through that user-association. Be careful, however: This happens for _every_ request. Don't use it lightly. (e.g. Don't run two database queries when one will do.)
 
 How do you access this injected data? The same way you access other request arguments: through method arguments.
 
-```
-component extends="taffy.core.resource" taffy_uri="/widgets/sprockets/{sprocketTypeId}" {
+```js
+component
+extends="taffy.core.resource"
+taffy_uri="/widgets/sprockets/{sprocketTypeId}" {
 
-    function get(sprocketTypeId, color, userId){
+	function get(sprocketTypeId, color, userId){
 
-        //the device will include the sprocketTypeId in the URI, and the desired color in the request arguments
+		// the device will include the sprocketTypeId in the URI, and the desired color
+		// in the request arguments but you've used the deviceToken to look up the
+		// userId and injected it into the request arguments all three values are
+		// available through the method arguments
 
-        //but you've used the deviceToken to look up the userId and injected it into the request arguments
-
-        //all three values are available through the method arguments
-
-    }
+	}
 
 }
 ```

@@ -9,7 +9,9 @@ const VideoContainer = styled.div`
 	overflow: hidden;
 	margin-bottom: 1.45rem;
 
-	& iframe, object, embed {
+	& iframe,
+	object,
+	embed {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -18,15 +20,15 @@ const VideoContainer = styled.div`
 	}
 `;
 
-const FluidVideo = ({ id, title='' }) => (
+const FluidVideo = ({ id, title = '' }) => (
 	<VideoContainer>
 		<iframe
 			width="100%"
-			src={`https://www.youtube.com/embed/${id}`}
+			src={`https://www.youtube.com/embed/${id}?hd=1`}
 			title={title}
 			frameborder="0"
 			allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-			allowfullscreen
+			allowfullscreen="allowfullscreen"
 		></iframe>
 	</VideoContainer>
 );
