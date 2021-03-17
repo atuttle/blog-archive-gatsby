@@ -120,7 +120,7 @@ const CKSubscribe = function({ position = 'inline' }) {
 						}}
 						data-element="guarantee"
 					>
-						We won't send you spam. Unsubscribe at any time.
+						I won't send you spam or sell your email. Unsubscribe at any time.
 					</div>
 					{/* <div class="formkit-powered-by-convertkit-container">
 						<a
