@@ -14,7 +14,7 @@ const IndexPage = ({ data }) => {
 			<FloatyImage width={`250px`} img={data.adam} alt="Adam Tuttle" />
 			<h2>No problemo!</h2>
 			<p>
-				Thanks for letting me know you're not interested in the podcast. I'll
+				Thanks for letting me know you're not interested in REST Assured. I'll
 				stop emailing you about it, forever!
 			</p>
 			<p>
