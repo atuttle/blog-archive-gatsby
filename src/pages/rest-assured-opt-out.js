@@ -27,7 +27,7 @@ const IndexPage = ({ data }) => {
 
 export default IndexPage;
 export const pageQuery = graphql`
-	query podcastOptOut {
+	query bookOptOut {
 		adam: file(relativePath: { eq: "about/adam-tuttle-removebg.png" }) {
 			childImageSharp {
 				fixed(width: 300) {
